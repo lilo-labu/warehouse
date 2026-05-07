@@ -1,0 +1,21 @@
+<%= form_with(model: category) do |f| %>
+  <% if category.errors.any? %>
+    <div class="price-meta" style="border-color: rgba(244,63,94,.5); color: #fecdd3;">
+      <ul style="margin: 0; padding-left: 18px;">
+        <% category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= f.label :name, "Название" %>
+    <%= f.text_field :name, placeholder: "Например: Электроника" %>
+  </div>
+
+  <div class="actions-row">
+    <%= f.submit "Сохранить", class: "btn btn-primary btn-small" %>
+    <%= link_to "Отмена", categories_path, class: "btn btn-secondary btn-small" %>
+  </div>
+<% end %>

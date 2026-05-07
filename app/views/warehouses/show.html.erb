@@ -1,0 +1,46 @@
+<div class="card-surface">
+  <div class="row">
+    <div>
+      <h2 style="margin: 0;"><%= @warehouse.name %></h2>
+      <p class="subtitle" style="margin-top: 6px;"><%= @warehouse.location %></p>
+    </div>
+    <div class="actions-row" style="margin-top: 0;">
+      <% if policy(@warehouse).update? %>
+        <%= link_to "Редактировать", edit_warehouse_path(@warehouse), class: "btn btn-secondary btn-small" %>
+      <% end %>
+      <%= link_to "К списку", warehouses_path, class: "btn btn-secondary btn-small" %>
+    </div>
+  </div>
+</div>
+
+<div style="height: 16px;"></div>
+
+<div class="card-surface">
+  <div class="row" style="margin-bottom: 10px;">
+    <h2 style="margin: 0;">Остатки на складе</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+      <tr>
+        <th>Товар</th>
+        <th>Количество</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @inventories.each do |inventory| %>
+        <tr>
+          <td><%= inventory.product.name %></td>
+          <td><%= inventory.quantity %></td>
+        </tr>
+      <% end %>
+      <% if @inventories.empty? %>
+        <tr>
+          <td colspan="2" style="color:#94a3b8;">Пока нет данных по остаткам.</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

@@ -1,0 +1,11 @@
+<div class="info-list">
+  <% if controller_name != "sessions" %>
+    <div><%= link_to "Войти", new_session_path(resource_name) %></div>
+  <% end %>
+  <% if devise_mapping.registerable? && controller_name != "registrations" %>
+    <div><%= link_to "Зарегистрироваться", new_registration_path(resource_name) %></div>
+  <% end %>
+  <% if devise_mapping.recoverable? && controller_name != "passwords" %>
+    <div><%= link_to "Забыли пароль?", new_password_path(resource_name) %></div>
+  <% end %>
+</div>

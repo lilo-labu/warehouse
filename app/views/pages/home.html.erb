@@ -8,6 +8,8 @@
         <a href="#about">О платформе</a>
         <a href="/opening">Открытие</a>
         <a href="/offer">Предложение</a>
+        <%= link_to "Вход", new_user_session_path %>
+        <%= link_to "Регистрация", new_user_registration_path %>
         <a href="tel:+79781234567" class="call-link">Позвонить</a>
       </nav>
     </div>
@@ -157,16 +159,16 @@
         <div class="lead" style="margin-top:18px;font-size:18px;">Стек подобран так, чтобы система была масштабируемой, безопасной и удобной для командной разработки.</div>
       </div>
       <div class="stack-items">
-        <div class="stack-item">Backend: Node.js (NestJS)</div>
-        <div class="stack-item">Frontend: React (Next.js) + Tailwind CSS</div>
+        <div class="stack-item">Backend: Ruby on Rails 8</div>
+        <div class="stack-item">Frontend: ERB + Hotwire + Tailwind CSS</div>
         <div class="stack-item">База данных: PostgreSQL</div>
-        <div class="stack-item">ORM: Prisma</div>
-        <div class="stack-item">Аутентификация: JWT + OAuth</div>
-        <div class="stack-item">API: REST</div>
-        <div class="stack-item">Реалтайм: WebSockets</div>
-        <div class="stack-item">Хранение файлов: AWS S3</div>
+        <div class="stack-item">ORM: ActiveRecord</div>
+        <div class="stack-item">Аутентификация: Devise</div>
+        <div class="stack-item">Авторизация: Pundit (RBAC)</div>
+        <div class="stack-item">Пагинация: Pagy</div>
+        <div class="stack-item">Тесты: Minitest</div>
         <div class="stack-item">CI/CD: GitHub Actions</div>
-        <div class="stack-item">Деплой: Docker + Vercel / AWS</div>
+        <div class="stack-item">Деплой: Docker + VPS / Render / Fly.io</div>
       </div>
     </div>
   </section>

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
+  include Pagy::Backend
 
   before_action :authenticate_user!
   
@@ -8,4 +9,12 @@ class ApplicationController < ActionController::Base
 
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  private
+
+  def user_not_authorized
+    redirect_to root_path, alert: "Недостаточно прав для этого действия."
+  end
 end

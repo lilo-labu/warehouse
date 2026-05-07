@@ -10,9 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_15_230122) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_07_082600) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "product_id", null: false
+    t.integer "quantity", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.bigint "warehouse_id", null: false
+    t.index ["product_id"], name: "index_inventories_on_product_id"
+    t.index ["warehouse_id", "product_id"], name: "index_inventories_on_warehouse_id_and_product_id", unique: true
+    t.index ["warehouse_id"], name: "index_inventories_on_warehouse_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.string "sku", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["sku"], name: "index_products_on_sku", unique: true
+  end
+
+  create_table "stock_movements", force: :cascade do |t|
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.string "movement_type", null: false
+    t.bigint "product_id", null: false
+    t.integer "quantity", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "warehouse_id", null: false
+    t.index ["product_id"], name: "index_stock_movements_on_product_id"
+    t.index ["user_id"], name: "index_stock_movements_on_user_id"
+    t.index ["warehouse_id"], name: "index_stock_movements_on_warehouse_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -21,9 +63,23 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_15_230122) do
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"
-    t.integer "role", default: 0
+    t.integer "role", default: 1
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  create_table "warehouses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "location", null: false
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "inventories", "products"
+  add_foreign_key "inventories", "warehouses"
+  add_foreign_key "products", "categories"
+  add_foreign_key "stock_movements", "products"
+  add_foreign_key "stock_movements", "users"
+  add_foreign_key "stock_movements", "warehouses"
 end

@@ -1,0 +1,40 @@
+<div class="card-surface">
+  <div class="row">
+    <div>
+      <h2 style="margin: 0;">Склады</h2>
+      <p class="subtitle" style="margin-top: 6px;">Список ваших складов и быстрый переход к остаткам.</p>
+    </div>
+    <% if policy(Warehouse).create? %>
+      <%= link_to "Новый склад", new_warehouse_path, class: "btn btn-primary btn-small" %>
+    <% end %>
+  </div>
+
+  <div style="height: 14px;"></div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Название</th>
+          <th>Локация</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @warehouses.each do |warehouse| %>
+          <tr>
+            <td><%= warehouse.name %></td>
+            <td><%= warehouse.location %></td>
+            <td>
+              <%= link_to "Открыть", warehouse_path(warehouse), class: "btn-link btn-link-primary" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div style="margin-top: 14px;">
+  <%== pagy_nav(@pagy) %>
+</div>

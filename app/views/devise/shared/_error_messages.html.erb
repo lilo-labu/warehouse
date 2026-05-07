@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+  <div class="price-meta" style="border-color: rgba(244,63,94,.5); color: #fecdd3;">
+    <p><%= pluralize(resource.errors.count, "ошибка") %> в форме:</p>
+    <ul>
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

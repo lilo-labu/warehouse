@@ -11,13 +11,37 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-[#020617] text-white">
-    <% if notice %>
-		<p class="notice"><%= notice %></p>
-	<% end %>
-	<% if alert %>
-		<p class="alert"><%= alert %></p>
-	<% end %>
-	<%= yield %>
+  <body>
+    <header class="top-nav">
+      <div class="container nav-wrap">
+        <%= link_to "Warehouse Service", (user_signed_in? ? authenticated_root_path : root_path), class: "brand" %>
+        <nav class="menu">
+          <% if user_signed_in? %>
+            <%= link_to "Склады", warehouses_path %>
+            <%= link_to "Товары", products_path %>
+            <%= link_to "Операции", stock_movements_path %>
+            <% if current_user.admin? %>
+              <%= link_to "Категории", categories_path %>
+            <% end %>
+            <span class="chip"><%= current_user.email %> (<%= current_user.role %>)</span>
+            <%= button_to "Выход", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
+          <% else %>
+            <%= link_to "Главная", root_path %>
+            <%= link_to "Вход", new_user_session_path %>
+            <%= link_to "Регистрация", new_user_registration_path %>
+          <% end %>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container" style="padding-top: 24px; padding-bottom: 24px;">
+      <% if notice.present? %>
+        <p class="price-meta" style="border-color: rgba(16,185,129,.5); color: #86efac;"><%= notice %></p>
+      <% end %>
+      <% if alert.present? %>
+        <p class="price-meta" style="border-color: rgba(244,63,94,.5); color: #fecdd3;"><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    </main>
   </body>
 </html>

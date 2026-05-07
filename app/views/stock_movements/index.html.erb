@@ -1,0 +1,44 @@
+<div class="card-surface">
+  <div class="row">
+    <div>
+      <h2 style="margin: 0;">Журнал операций</h2>
+      <p class="subtitle" style="margin-top: 6px;">История всех приходов и расходов с указанием пользователя.</p>
+    </div>
+    <% if policy(StockMovement).create? %>
+      <%= link_to "Новая операция", new_stock_movement_path, class: "btn btn-primary btn-small" %>
+    <% end %>
+  </div>
+
+  <div style="height: 14px;"></div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Дата</th>
+          <th>Склад</th>
+          <th>Товар</th>
+          <th>Тип</th>
+          <th>Количество</th>
+          <th>Пользователь</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @stock_movements.each do |movement| %>
+          <tr>
+            <td><%= l(movement.created_at, format: :short) %></td>
+            <td><%= movement.warehouse.name %></td>
+            <td><%= movement.product.name %></td>
+            <td><%= movement.movement_type %></td>
+            <td><%= movement.quantity %></td>
+            <td><%= movement.user.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div style="margin-top: 14px;">
+  <%== pagy_nav(@pagy) %>
+</div>

@@ -1,0 +1,31 @@
+<%= form_with(model: product) do |f| %>
+  <% if product.errors.any? %>
+    <div class="price-meta" style="border-color: rgba(244,63,94,.5); color: #fecdd3;">
+      <ul style="margin: 0; padding-left: 18px;">
+        <% product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= f.label :name, "Название" %>
+    <%= f.text_field :name, placeholder: "Например: Сканер" %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :sku, "SKU" %>
+    <%= f.text_field :sku, placeholder: "Например: SCN-001" %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :category_id, "Категория" %>
+    <%= f.collection_select :category_id, @categories, :id, :name, { prompt: "Выберите категорию" } %>
+  </div>
+
+  <div class="actions-row">
+    <%= f.submit "Сохранить", class: "btn btn-primary btn-small" %>
+    <%= link_to "Отмена", products_path, class: "btn btn-secondary btn-small" %>
+  </div>
+<% end %>

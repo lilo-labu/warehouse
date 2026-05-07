@@ -1,0 +1,46 @@
+<div class="card-surface">
+  <h2 style="margin-top: 0;">Новая складская операция</h2>
+  <p class="subtitle" style="margin-top: 8px;">Выберите склад и товар, затем укажите тип операции и количество.</p>
+
+<%= form_with model: @stock_movement do |f| %>
+  <% if @stock_movement.errors.any? %>
+    <div class="price-meta" style="border-color: rgba(244,63,94,.5); color: #fecdd3;">
+      <ul style="margin: 0; padding-left: 18px;">
+        <% @stock_movement.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= f.label :warehouse_id, "Склад" %>
+    <%= f.collection_select :warehouse_id, @warehouses, :id, :name, { prompt: "Выберите склад" } %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :product_id, "Товар" %>
+    <%= f.collection_select :product_id, @products, :id, :name, { prompt: "Выберите товар" } %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :movement_type, "Тип операции" %>
+    <%= f.select :movement_type, [["Приход", "inbound"], ["Расход", "outbound"]], { prompt: "Выберите тип" } %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :quantity, "Количество" %>
+    <%= f.number_field :quantity, min: 1 %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :comment, "Комментарий" %>
+    <%= f.text_area :comment, rows: 3, placeholder: "Необязательно" %>
+  </div>
+
+  <div class="actions-row">
+    <%= f.submit "Провести операцию", class: "btn btn-primary btn-small" %>
+    <%= link_to "Отмена", stock_movements_path, class: "btn btn-secondary btn-small" %>
+  </div>
+<% end %>
+</div>

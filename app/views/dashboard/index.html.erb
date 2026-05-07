@@ -1,0 +1,222 @@
+<div class="canvas-bg">
+      <div class="main-frame">
+        <!-- Header -->
+        <header class="header">
+          <div class="header-logo">Warehouse Service</div>
+          <nav class="header-nav">
+            <a href="#hero" class="header-nav-link active" data-section="hero">Главная</a>
+            <a href="#products" class="header-nav-link" data-section="products">Товары</a>
+            <a href="#warehouses" class="header-nav-link" data-section="warehouses">Склады</a>
+            <a href="#receiving" class="header-nav-link" data-section="receiving">Приемка</a>
+            <%= link_to "Вход", new_user_session_path, class: "header-nav-link special" %>
+          </nav>
+        </header>
+
+      
+        <section id="hero" class="hero-section">
+          <h1 class="hero-title">Warehouse Service — цифровая платформа для эффективного управления складом</h1>
+          <p class="hero-desc">Коммерческое веб-решение для учета товаров, автоматизации складских процессов, контроля остатков и аналитики в единой цифровой среде.</p>
+          <div class="hero-features-row">
+            <div class="hero-feature-lg">📦 Учет остатков</div>
+            <div class="hero-feature-lg">⚙️ Автоматизация операций</div>
+            <div class="hero-feature-lg">📊 Отчеты и аналитика</div>
+          </div>
+          <div class="hero-features-row">
+            <div class="hero-feature">🔒 Безопасность</div>
+            <div class="hero-feature">🔌 Интеграции API</div>
+            <div class="hero-feature">☁️ Облачный доступ</div>
+          </div>
+        </section>
+
+   
+        <section id="products" class="section-products">
+          <div class="section-products-label">ТОВАРЫ</div>
+          <h2 class="section-products-title">Управление товарами</h2>
+          
+          <!-- Поиск -->
+          <div class="search-wrapper">
+            <div class="search-box">
+              <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="searchInput" class="search-input" placeholder="Поиск товара по названию, артикулу или описанию...">
+              <button id="clearSearch" class="search-clear" style="display: none;">✕</button>
+            </div>
+            <div id="searchCount" class="search-count"></div>
+          </div>
+          
+          <div class="products-cards-row" id="productsGrid">
+            <!-- Карточка 1: Фото товара -->
+            <div class="product-card" data-search="фото товара изображение картинка">
+              <div class="icon-box">
+                <i data-lucide="image"></i>
+              </div>
+              <h3 class="card-title">Фото товара</h3>
+            </div>
+
+            <!-- Карточка 2: Информация -->
+            <div class="product-card" data-search="информация данные название артикул количество описание">
+              <div class="icon-box">
+                <i data-lucide="info"></i>
+              </div>
+              <h3 class="card-title">Информация</h3>
+              <div class="card-desc">
+                Название:<br>
+                Артикул:<br>
+                Количество:<br>
+                Описание товара
+              </div>
+            </div>
+
+            <!-- Карточка 3: Расположение товара -->
+            <div class="product-card" data-search="расположение адрес ряд стеллаж штрихкод место хранение">
+              <div class="icon-box">
+                <i data-lucide="map-pin"></i>
+              </div>
+              <h3 class="card-title">Расположение товара</h3>
+              <div class="card-desc">
+                Адрес:<br>
+                Ряд:<br>
+                Стеллаж:<br>
+                Штрихкод
+              </div>
+            </div>
+
+            <!-- Карточка 4: Действие с кнопками -->
+            <div class="product-card" data-search="действие операции перемещение приемка отгрузка принять отгрузить переместить">
+              <div class="icon-box">
+                <i data-lucide="package"></i>
+              </div>
+              <h3 class="card-title">Действие</h3>
+              <div class="card-action">
+                <span class="card-action-text">📥 Принять на склад</span>
+              </div>
+              <div class="card-action-empty"></div>
+              <div class="card-action">
+                <span class="card-action-text">📤 Отгрузить</span>
+              </div>
+              <div class="card-action-empty"></div>
+              <div class="card-action">
+                <span class="card-action-text">🔄 Переместить</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Warehouses Section -->
+        <section id="warehouses" class="section-warehouses">
+          <div class="section-warehouses-label">Склады</div>
+          <h2 class="section-warehouses-title">Складская инфраструктура</h2>
+          <p class="section-warehouses-desc">Мы используем масштабируемую архитектуру (NestJS + PostgreSQL), чтобы управлять остатками в реальном времени. Адреса складов — с привязкой к зонам покрытия и расчётом логистики.</p>
+          <div class="warehouses-list-row">
+            <div class="warehouse-card">📍 ул. Героев Севастополя, 76</div>
+            <div class="warehouse-card">📍 ул. Руднева, 41</div>
+            <div class="warehouse-card">📍 Фиолентовское шоссе, 1г</div>
+            <div class="warehouse-card">📍 Симферопольское шоссе, 17</div>
+            <div class="warehouse-card">📍 ул. Токарева, 10</div>
+            <div class="warehouse-card">📍 пр. Октябрьской Революции, 60</div>
+            <div class="warehouse-card">📍 Камышовое шоссе, 53</div>
+            <div class="warehouse-card">📍 ул. Пожарова, 32</div>
+            <div class="warehouse-card">📍 ул. Вакуленчука, 29</div>
+            <div class="warehouse-card">📍 ул. Хрусталёва, 115</div>
+          </div>
+        </section>
+
+        <!-- Receiving Section -->
+        <section id="receiving" class="section-receiving">
+          <div class="section-receiving-content">
+            <div class="section-receiving-label">Приемка</div>
+            <h2 class="section-receiving-title">Надежное перемещение товаров</h2>
+            <p class="section-receiving-desc">Отсканируйте штрихкод накладной или введите номер вручную. Затем по очереди сканируйте товары — система покажет отклонения. Подтвердите приёмку одной кнопкой.</p>
+          </div>
+          <div class="section-receiving-features">
+            <div class="receiving-feature-card"><div class="receiving-feature-label">📡 Отслеживание</div></div>
+            <div class="receiving-feature-card"><div class="receiving-feature-label">📄 Создание накладных</div></div>
+            <div class="receiving-feature-card"><div class="receiving-feature-label">✏️ Редактирование накладных</div></div>
+            <div class="receiving-feature-card"><div class="receiving-feature-label">⚙️ Настройки</div></div>
+          </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+          <div class="footer-text">© 2026 Разработка выполнена студентами СевГУ.</div>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // Иконки Lucide
+        if (typeof lucide !== 'undefined' && lucide.createIcons) {
+          lucide.createIcons();
+        }
+        
+        // Навигация
+        const navLinks = document.querySelectorAll('.header-nav-link[data-section]');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const sectionId = this.getAttribute('data-section');
+            const target = document.getElementById(sectionId);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              navLinks.forEach(l => l.classList.remove('active'));
+              this.classList.add('active');
+            }
+          });
+        });
+        
+        // Поиск
+        const searchInput = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearSearch');
+        const searchCount = document.getElementById('searchCount');
+        const cards = document.querySelectorAll('.product-card');
+        
+        function filterCards() {
+          const query = searchInput.value.toLowerCase().trim();
+          let visible = 0;
+          
+          cards.forEach(card => {
+            const title = card.querySelector('.card-title')?.innerText.toLowerCase() || '';
+            const desc = card.querySelector('.card-desc')?.innerText.toLowerCase() || '';
+            const searchData = card.getAttribute('data-search')?.toLowerCase() || '';
+            const text = title + ' ' + desc + ' ' + searchData;
+            
+            if (query === '' || text.includes(query)) {
+              card.style.display = '';
+              visible++;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+          
+          clearBtn.style.display = query !== '' ? 'flex' : 'none';
+          searchCount.textContent = query !== '' ? `Найдено: ${visible} из ${cards.length}` : '';
+          
+          // Сообщение "ничего не найдено"
+          let noResults = document.getElementById('noResultsMsg');
+          if (visible === 0 && query !== '') {
+            if (!noResults) {
+              const msg = document.createElement('div');
+              msg.id = 'noResultsMsg';
+              msg.className = 'no-results';
+              msg.innerHTML = '<p>🔍 Ничего не найдено. Попробуйте изменить запрос.</p>';
+              document.getElementById('productsGrid').appendChild(msg);
+            }
+          } else if (noResults) {
+            noResults.remove();
+          }
+        }
+        
+        if (searchInput) {
+          searchInput.addEventListener('input', filterCards);
+        }
+        if (clearBtn) {
+          clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            filterCards();
+            searchInput.focus();
+          });
+        }
+      });

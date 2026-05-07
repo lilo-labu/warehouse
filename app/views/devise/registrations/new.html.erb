@@ -1,0 +1,31 @@
+<div class="auth-shell">
+  <div class="auth-card">
+    <h2 style="margin-top: 0;">Регистрация</h2>
+    <p class="subtitle" style="margin-top: 8px;">Создайте аккаунт для работы в Warehouse Service.</p>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-field">
+        <%= f.label :email, "Email" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="form-field">
+        <%= f.label :password, "Пароль" %>
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+
+      <div class="form-field">
+        <%= f.label :password_confirmation, "Подтверждение пароля" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <div style="margin-top: 14px;">
+        <%= f.submit "Создать аккаунт", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

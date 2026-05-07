@@ -1,0 +1,38 @@
+<div class="card-surface">
+  <div class="row">
+    <div>
+      <h2 style="margin: 0;">Товары</h2>
+      <p class="subtitle" style="margin-top: 6px;">Каталог товаров с SKU и категориями.</p>
+    </div>
+    <% if policy(Product).create? %>
+      <%= link_to "Новый товар", new_product_path, class: "btn btn-primary btn-small" %>
+    <% end %>
+  </div>
+
+  <div style="height: 14px;"></div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Название</th>
+          <th>SKU</th>
+          <th>Категория</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= link_to product.name, product_path(product), class: "btn-link" %></td>
+            <td><%= product.sku %></td>
+            <td><%= product.category.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div style="margin-top: 14px;">
+  <%== pagy_nav(@pagy) %>
+</div>
